@@ -1,0 +1,30 @@
+{
+  "name": "ampersand-react-mixin",
+  "description": "Mixin for react classes to easily listen for changes and re-render from ampersand models/collections",
+  "version": "0.0.0",
+  "author": "Henrik Joreteg <henrik@andyet.net>",
+  "bugs": {
+    "url": "https://github.com/ampersandjs/ampersand-react-mixin/issues"
+  },
+  "dependencies": {
+    "ampersand-events": "^1.1.0",
+    "lodash.bind": "^3.1.0",
+    "lodash.foreach": "^3.0.2",
+    "lodash.result": "^3.0.0"
+  },
+  "homepage": "https://github.com/ampersandjs/ampersand-react-mixin",
+  "keywords": [
+    "ampersand",
+    "mixin",
+    "react"
+  ],
+  "license": "MIT",
+  "main": "ampersand-react-mixin.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ampersandjs/ampersand-react-mixin"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
