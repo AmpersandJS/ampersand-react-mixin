@@ -43,10 +43,6 @@ module.exports = React.createClass({
 
 ```
 
-## credits
-
-If you like this follow [@HenrikJoreteg](http://twitter.com/henrikjoreteg) on twitter.
-
 ## license
 
 MIT
