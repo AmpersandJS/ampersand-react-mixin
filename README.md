@@ -10,7 +10,7 @@ Once it hits `1.0.0` we'll add it to the main ampersand site, etc.
 
 ## how it works?
 
-This auto-listens to any ampersand model or collection that is passed to it as a `prop`. And re-renders the component on changes. It also unregisters the listener when the componenet is unmounted.
+This auto-listens to any ampersand model or collection that is passed to it as a `prop`. And re-renders the component on changes. It also unregisters the listener when the component is unmounted.
 
 You can also optionally create a method in your component called: `getObservedItems`.
 
