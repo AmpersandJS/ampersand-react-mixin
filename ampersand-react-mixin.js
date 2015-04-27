@@ -43,7 +43,7 @@ module.exports = events.createEmitter({
         }
     },
 
-    componentDidUnmount: function () {
+    componentWillUnmount: function () {
         this.stopListening();
     }
 });
