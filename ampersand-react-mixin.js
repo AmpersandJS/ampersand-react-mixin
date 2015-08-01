@@ -18,14 +18,20 @@ var deferbounce = function (fn) {
 };
 
 module.exports = events.createEmitter({
+
     watch: function (modelOrCollection, opts) {
         var events;
-        if (modelOrCollection.isCollection) {
-            events = 'add remove reset';
-        } else if (modelOrCollection.isState) {
-            events = 'change';
-        } else {
-            return;
+
+        if (typeof modelOrCollection === 'object'){
+          if (modelOrCollection.isCollection) {
+              events = 'add remove reset';
+          } else if (modelOrCollection.isState) {
+              events = 'change';
+          }
+        }
+
+        if (!events){
+          return;
         }
 
         this.listenTo(modelOrCollection, events, deferbounce(bind(this.forceUpdate, this)));
