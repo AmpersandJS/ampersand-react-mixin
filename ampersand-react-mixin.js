@@ -22,7 +22,7 @@ module.exports = events.createEmitter({
     watch: function (modelOrCollection, opts) {
         var events;
 
-        if (typeof modelOrCollection === 'object'){
+        if (modelOrCollection !== null && typeof modelOrCollection === 'object'){
           if (modelOrCollection.isCollection) {
               events = 'add remove reset';
           } else if (modelOrCollection.isState) {
