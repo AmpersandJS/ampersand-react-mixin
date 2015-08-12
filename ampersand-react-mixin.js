@@ -1,6 +1,5 @@
 var events = require('ampersand-events');
 var bind = require('lodash.bind');
-var result = require('lodash.result');
 var forEach = require('lodash.foreach');
 
 var deferbounce = function (fn) {
