@@ -2,11 +2,6 @@
 
 Mixin for react classes to easily listen for changes and re-render from ampersand models/collections.
 
-**Note the `0.x.x` version range. Per semver conventions, this is still in very much in progress, should be considered volatile**
-
-Published for feedback, experiementation.
-
-Once it hits `1.0.0` we'll add it to the main ampersand site, etc.
 
 ## how it works?
 
