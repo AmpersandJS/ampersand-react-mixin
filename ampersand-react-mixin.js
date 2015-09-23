@@ -16,6 +16,12 @@ var deferbounce = function (fn) {
     }
 };
 
+var safeForceUpdate = function () {
+    if (this.isMounted()) {
+        this.forceUpdate();
+    }
+};
+
 module.exports = events.createEmitter({
 
     watch: function (modelOrCollection, opts) {
@@ -33,9 +39,9 @@ module.exports = events.createEmitter({
           return;
         }
 
-        this.listenTo(modelOrCollection, events, deferbounce(bind(this.forceUpdate, this)));
+        this.listenTo(modelOrCollection, events, deferbounce(bind(safeForceUpdate, this)));
 
-        if (opts.reRender) this.forceUpdate();
+        if (opts.reRender) safeForceUpdate.call(this);
     },
 
     componentDidMount: function () {
