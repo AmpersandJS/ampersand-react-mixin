@@ -1,7 +1,7 @@
 {
   "name": "ampersand-react-mixin",
   "description": "Mixin for react classes to easily listen for changes and re-render from ampersand models/collections",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Henrik Joreteg <henrik@andyet.net>",
   "bugs": {
     "url": "https://github.com/ampersandjs/ampersand-react-mixin/issues"
