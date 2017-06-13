@@ -1,6 +1,6 @@
 var events = require('ampersand-events');
-var bind = require('lodash.bind');
-var forEach = require('lodash.foreach');
+var bind = require('lodash/bind');
+var forEach = require('lodash/forEach');
 
 var deferbounce = function (fn) {
     var triggered = false;
