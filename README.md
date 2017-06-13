@@ -3,7 +3,7 @@
 Mixin for react classes to easily listen for changes and re-render from ampersand models/collections.
 
 
-## how it works?
+## How it works
 
 This auto-listens to any ampersand model or collection that is passed to it as a `prop`. And re-renders the component on changes. It also unregisters the listener when the component is unmounted.
 
@@ -13,7 +13,7 @@ This will get called to determine which things should be watched.
 
 Or you can explicitly call `watch` on the component and pass an ampersand model, state, or collection object.
 
-If it's a collection it listens to `'add remove reset'` if it's a `State` object it listens to `'change'`
+If it's a collection, it listens to `'add remove reset sort'` events. If it's a `State` object, it listens to `'change'` events.
 
 ## install
 
