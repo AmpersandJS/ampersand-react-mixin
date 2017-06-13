@@ -29,7 +29,7 @@ module.exports = events.createEmitter({
 
         if (modelOrCollection !== null && typeof modelOrCollection === 'object'){
           if (modelOrCollection.isCollection) {
-              events = 'add remove reset';
+              events = 'add remove reset sort';
           } else if (modelOrCollection.isState) {
               events = 'change';
           }
