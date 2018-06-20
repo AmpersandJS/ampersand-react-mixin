@@ -17,7 +17,7 @@ var deferbounce = function (fn) {
 };
 
 var safeForceUpdate = function () {
-    if (this.isMounted()) {
+    if (this.__isMounted) {
         this.forceUpdate();
     }
 };
@@ -52,9 +52,11 @@ module.exports = events.createEmitter({
         if (this.autoWatch !== false) {
             forEach(this.props, this.watch, this);
         }
+        this.__isMounted = true;
     },
 
     componentWillUnmount: function () {
         this.stopListening();
+        this.__isMounted = false;
     }
 });
