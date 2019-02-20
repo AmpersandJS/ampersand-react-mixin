@@ -57,7 +57,10 @@ let ampersandReactAdapter = (WrappedComponent) => {
 				forEach(watched, this.watch, this);
 			}
 			if (this.autoWatch !== false) {
-				forEach(this.props, this.watch, this);
+				// forEach(this.props, this.watch, this);
+				for (let propKey of Object.keys(this.props)) {
+					this.watch(this.props[propKey], this);
+				}
 			}
 		}
 
