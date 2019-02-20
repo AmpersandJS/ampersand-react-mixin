@@ -1,7 +1,7 @@
 import Events from 'ampersand-events';
 import bind from 'lodash/bind';
 import forEach from 'lodash/forEach';
-import {Component} from 'react';
+import React from 'react';
 
 var deferbounce = function (fn) {
 	var triggered = false;
@@ -24,7 +24,7 @@ var safeForceUpdate = function () {
 };
 
 let ampersandReactAdapter = (WrappedComponent) => {
-	return class extends Component {
+	return class extends React.Component {
 
 		constructor(props) {
 			super(props);
@@ -66,7 +66,8 @@ let ampersandReactAdapter = (WrappedComponent) => {
 		}
 
 		render() {
-			return <WrappedComponent {...this.props} />;
+			// return <WrappedComponent {...this.props} />;
+			return React.createElement(WrappedComponent, {...this.props}, null);
 		}
 	}
 };
