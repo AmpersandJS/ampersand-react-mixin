@@ -10,6 +10,9 @@
 		"ampersand-events": "^2.0.2",
 		"lodash": "^4.17.11"
 	},
+	"peerDependencies": {
+		"react": "~16.x"
+	},
 	"homepage": "https://github.com/ishan1608/ampersand-react-adapter",
 	"keywords": [
 		"ampersand",
@@ -24,5 +27,8 @@
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"devDependencies": {
+		"react": "^16.8.2"
 	}
 }
