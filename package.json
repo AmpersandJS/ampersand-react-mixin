@@ -1,28 +1,28 @@
 {
-  "name": "ampersand-react-mixin",
-  "description": "Mixin for react classes to easily listen for changes and re-render from ampersand models/collections",
-  "version": "2.0.0",
-  "author": "Henrik Joreteg <henrik@andyet.net>",
-  "bugs": {
-    "url": "https://github.com/ampersandjs/ampersand-react-mixin/issues"
-  },
-  "dependencies": {
-    "ampersand-events": "^2.0.2",
-    "lodash": "^4.17.4"
-  },
-  "homepage": "https://github.com/ampersandjs/ampersand-react-mixin",
-  "keywords": [
-    "ampersand",
-    "mixin",
-    "react"
-  ],
-  "license": "MIT",
-  "main": "ampersand-react-mixin.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ampersandjs/ampersand-react-mixin"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+	"name": "ampersand-react-adapter",
+	"description": "Higher order component for react classes to easily listen for changes and re-render from ampersand models/collections.\nOriginal Author: Henrik Joreteg <henrik@andyet.net>",
+	"version": "0.0.1",
+	"author": "Ishan <ishan1608@gmail.com>",
+	"bugs": {
+		"url": "https://github.com/ishan1608/ampersand-react-adapter/issues"
+	},
+	"dependencies": {
+		"ampersand-events": "^2.0.2",
+		"lodash": "^4.17.11"
+	},
+	"homepage": "https://github.com/ishan1608/ampersand-react-adapter",
+	"keywords": [
+		"ampersand",
+		"mixin",
+		"react"
+	],
+	"license": "MIT",
+	"main": "ampersand-react-adapter.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ishan1608/ampersand-react-adapter"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	}
 }
