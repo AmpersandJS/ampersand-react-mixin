@@ -1,6 +1,6 @@
 import Events from 'ampersand-events';
 import bind from 'lodash/bind';
-import forEach from 'lodash/forEach';
+// import forEach from 'lodash/forEach';
 import React from 'react';
 
 var deferbounce = function (fn) {
@@ -28,6 +28,7 @@ let ampersandReactAdapter = (WrappedComponent) => {
 
 		constructor(props) {
 			super(props);
+			this._isMounted = false;
 			Events.createEmitter(this);
 		}
 
@@ -52,9 +53,13 @@ let ampersandReactAdapter = (WrappedComponent) => {
 		}
 
 		componentDidMount() {
+			this._isMounted = true;
 			var watched = this.getObservedItems && this.getObservedItems();
 			if (watched) {
-				forEach(watched, this.watch, this);
+				// forEach(watched, this.watch, this);
+				for (let watchedObject of watched) {
+					this.watch(watchedObject, this);
+				}
 			}
 			if (this.autoWatch !== false) {
 				// forEach(this.props, this.watch, this);
@@ -66,6 +71,11 @@ let ampersandReactAdapter = (WrappedComponent) => {
 
 		componentWillUnmount() {
 			this.stopListening();
+			this._isMounted = false;
+		}
+
+		isMounted() {
+			return this._isMounted;
 		}
 
 		render() {
