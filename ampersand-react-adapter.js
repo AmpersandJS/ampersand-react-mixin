@@ -3,10 +3,10 @@ import bind from 'lodash/bind';
 // import forEach from 'lodash/forEach';
 import React from 'react';
 
-var deferbounce = function (fn) {
-	var triggered = false;
+const deferBounce = function (fn) {
+	let triggered = false;
 	return function () {
-		var self = this;
+		let self = this;
 		if (!triggered) {
 			triggered = true;
 			setTimeout(function () {
@@ -17,8 +17,8 @@ var deferbounce = function (fn) {
 	}
 };
 
-var safeForceUpdate = function () {
-	if (this.isMounted()) {
+const safeForceUpdate = function () {
+	if (this._isMounted) {
 		this.forceUpdate();
 	}
 };
@@ -33,7 +33,7 @@ let ampersandReactAdapter = (WrappedComponent) => {
 		}
 
 		watch(modelOrCollection, opts) {
-			var events;
+			let events;
 
 			if (modelOrCollection !== null && typeof modelOrCollection === 'object') {
 				if (modelOrCollection.isCollection) {
@@ -47,14 +47,15 @@ let ampersandReactAdapter = (WrappedComponent) => {
 				return;
 			}
 
-			this.listenTo(modelOrCollection, events, deferbounce(bind(safeForceUpdate, this)));
+			this.listenTo(modelOrCollection, events, deferBounce(bind(safeForceUpdate, this)));
 
 			if (opts.reRender) safeForceUpdate.call(this);
 		}
 
+		// noinspection JSUnusedGlobalSymbols
 		componentDidMount() {
 			this._isMounted = true;
-			var watched = this.getObservedItems && this.getObservedItems();
+			const watched = this.getObservedItems && this.getObservedItems();
 			if (watched) {
 				// forEach(watched, this.watch, this);
 				for (let watchedObject of watched) {
@@ -69,19 +70,19 @@ let ampersandReactAdapter = (WrappedComponent) => {
 			}
 		}
 
+		// noinspection JSUnusedGlobalSymbols
 		componentWillUnmount() {
 			this.stopListening();
 			this._isMounted = false;
 		}
 
-		isMounted() {
-			return this._isMounted;
-		}
-
+		// noinspection JSUnusedGlobalSymbols
 		render() {
+			// TODO ishan 2019-02-21 Figure out how to use JSX
 			// return <WrappedComponent {...this.props} />;
 			return React.createElement(WrappedComponent, {...this.props}, null);
 		}
 	}
 };
+// noinspection JSUnusedGlobalSymbols
 export default ampersandReactAdapter;
