@@ -1,6 +1,7 @@
-var events = require('ampersand-events');
-var bind = require('lodash/bind');
-var forEach = require('lodash/forEach');
+import Events from 'ampersand-events';
+import bind from 'lodash/bind';
+import forEach from 'lodash/forEach';
+import {Component} from 'react';
 
 var deferbounce = function (fn) {
 	var triggered = false;
@@ -22,39 +23,51 @@ var safeForceUpdate = function () {
 	}
 };
 
-module.exports = events.createEmitter({
+let ampersandReactAdapter = (WrappedComponent) => {
+	return class extends Component {
 
-	watch: function (modelOrCollection, opts) {
-		var events;
+		constructor(props) {
+			super(props);
+			Events.createEmitter(this);
+		}
 
-		if (modelOrCollection !== null && typeof modelOrCollection === 'object') {
-			if (modelOrCollection.isCollection) {
-				events = 'add remove reset sort';
-			} else if (modelOrCollection.isState) {
-				events = 'change';
+		watch(modelOrCollection, opts) {
+			var events;
+
+			if (modelOrCollection !== null && typeof modelOrCollection === 'object') {
+				if (modelOrCollection.isCollection) {
+					events = 'add remove reset sort';
+				} else if (modelOrCollection.isState) {
+					events = 'change';
+				}
+			}
+
+			if (!events) {
+				return;
+			}
+
+			this.listenTo(modelOrCollection, events, deferbounce(bind(safeForceUpdate, this)));
+
+			if (opts.reRender) safeForceUpdate.call(this);
+		}
+
+		componentDidMount() {
+			var watched = this.getObservedItems && this.getObservedItems();
+			if (watched) {
+				forEach(watched, this.watch, this);
+			}
+			if (this.autoWatch !== false) {
+				forEach(this.props, this.watch, this);
 			}
 		}
 
-		if (!events) {
-			return;
+		componentWillUnmount() {
+			this.stopListening();
 		}
 
-		this.listenTo(modelOrCollection, events, deferbounce(bind(safeForceUpdate, this)));
-
-		if (opts.reRender) safeForceUpdate.call(this);
-	},
-
-	componentDidMount: function () {
-		var watched = this.getObservedItems && this.getObservedItems();
-		if (watched) {
-			forEach(watched, this.watch, this);
+		render() {
+			return <WrappedComponent {...this.props} />;
 		}
-		if (this.autoWatch !== false) {
-			forEach(this.props, this.watch, this);
-		}
-	},
-
-	componentWillUnmount: function () {
-		this.stopListening();
 	}
-});
+};
+export default ampersandReactAdapter;
